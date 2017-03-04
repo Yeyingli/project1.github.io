@@ -1,0 +1,14 @@
+/*圈1*/
+#parent1{width: 400px;height: 400px;border: 5px solid blue;margin: 100px 15px;position: absolute;}
+/*圈2*/
+#parent2{width: 400px;height: 400px;border: 5px solid blue;margin: 100px 465px;position: absolute;}
+/*圈3*/
+#parent3{width: 400px;height: 400px;border: 5px solid blue;margin: 100px 915px;position: absolute;}
+/*方块*/
+.s1{width: 50px;height: 50px;background: red;position: absolute}
+/*开关*/
+#btn1{position: absolute;left: 180px;top: 455px;width: 100px;height: 30px;}
+#btn2{position: absolute;left: 625px;top: 455px;width: 100px;height: 30px;}
+#btn3{position: absolute;left: 1070px;top: 455px;width: 100px;height: 30px;}
+
+

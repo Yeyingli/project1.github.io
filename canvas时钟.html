@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/page.css" />
+		<script type="text/javascript" src="js/public.js"></script>
+		<style>
+		    /*画布*/
+			#clock{position:absolute;margin-left: 350px;}
+		</style>
+	</head>
+	<body>
+<!--标题-->
+		<div class="title">
+			<div class="title1">北京时间:</div>
+			<img class="timeImg" src="images/img/time/0.png" />
+			<img class="timeImg" src="images/img/time/0.png" />
+			
+			<img src="images/img/time/second.png" />
+			
+			<img class="timeImg" src="images/img/time/0.png" />
+			<img class="timeImg" src="images/img/time/0.png" />
+			
+			<img src="images/img/time/second.png" />
+			
+			<img class="timeImg" src="images/img/time/0.png" />
+			<img class="timeImg" src="images/img/time/0.png" />
+			<div class="title2"><a href="index.html"><h2>返回主页</h2></a></div>
+		</div>
+		<div class="title3">
+				<h1>前端基础首页</h1>
+		</div>
+<!--选项栏-->
+		<div class="nav warp">
+<!--各选项-->
+			<ul>
+				<li class="li1"><a href="首页.html">首页</a></li>
+				<li><a href="九九乘法表.html">九九乘法表</a></li>
+				<li><a href="简易钢琴.html">简易钢琴</a></li>
+				<li><a href="贪食蛇.html">贪食蛇</a></li>
+				<li><a href="绕圈方块.html">绕圈方块</a></li>	
+				<li><a href="各种浮动效果.html">各种浮动效果</a></li>
+				<li><a href="手机滑动解锁.html">手机滑动解锁</a></li>
+			</ul>
+			<ul>
+				<li><a href="选项卡.html">选项卡</a></li>
+				<li><a href="canvas时钟.html">canvas时钟</a></li>
+				<li><a href="老虎机.html">老虎机</a></li>
+				<li><a href="整屏切换.html">整屏切换</a></li>
+				<li><a href="登录窗遮罩.html">登录窗遮罩</a></li>		
+				<li><a href="重新发送验证码.html">重新发送验证码</a></li>
+				<li><a href="响应式无限瀑布.html">响应式无限瀑布</a></li>	
+			</ul>
+			<ul>
+				<li><a href="移入移出效果.html">移入移出效果</a></li>
+				<li><a href="15.html">15</a></li>
+				<li><a href="16.html">16</a></li>
+				<li><a href="17.html">17</a></li>
+				<li><a href="18.html">18</a></li>	
+				<li><a href="19.html">19</a></li>
+				<li><a href="20.html">20</a></li>	
+			</ul>
+		</div>
+<!--电子时钟-->
+		<canvas id="clock" width="600" height="600">
+			不支持canvas
+		</canvas>
+		
+		<script>
+			//创建画布,创建绘画环境
+			var canvas = document.getElementById("clock");
+			var ctx = canvas.getContext('2d');
+			//一些基本参数
+			//宽度
+			var width = canvas.width;
+			//高度
+			var height = canvas.height;
+			//半径
+			var r = width / 2;
+			//相对单位
+			var em = width / 300;
+			
+			//绘画时钟面板
+			function drawPannel(){
+				
+				
+				ctx.save();
+				//确定判断(0,0)起始点的位置
+				ctx.translate(r,r);
+				ctx.beginPath();
+				
+				//线的宽度
+				ctx.lineWidth = 10 * em;
+				//绘制一个圆盘
+				//2π指的是我绘制了一个圆
+				
+				ctx.arc(0,0,r - 15 * em,0,2 * Math.PI,true);
+				
+				ctx.stroke();
+				
+				ctx.font = 18 * em +'px Arial';
+				//文字绘制的基线必须是水平和垂直对齐,圆盘上的文字才会显示在正确的位置
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				
+				var time = [3,4,5,6,7,8,9,10,11,12,1,2];
+				
+				for(var i = 0;i<time.length;i++){
+					var rad = 2 * i * Math.PI / time.length;
+					//数字位置的水平和垂直坐标是斜边(半径)的临边和对边
+					//临边 = 斜边 * cosΘ
+					//对边 = 斜边 * sinΘ
+					var x = (r - 40 * em) * Math.cos(rad);
+					var y = (r - 40 * em) * Math.sin(rad);
+					var num = time[i];
+					ctx.fillText(num,x,y);
+				}
+				for(var i=0;i < 60; i++){
+					var rad = 2 * i * Math.PI / 60;
+					
+					var x = (r - 25 * em) * Math.cos(rad);
+					var y = (r - 25 * em) * Math.sin(rad);
+					
+					ctx.beginPath();
+					
+					if(i % 5 == 0){
+						ctx.arc(x, y, 4 * em, 0 , 2 * Math.PI, false);
+					}else{
+						ctx.arc(x, y, 2 * em, 0 , 2 * Math.PI, false);
+					}
+					ctx.fill();
+				}
+			}
+			
+			//绘画时针对象
+			function drawHour(h,m){
+				//由于构建时、分、秒钟绘画点的坐标位置已经发生改变.所以需要在绘画面板的前先存档
+				//保证每次绘制时、分、秒钟的位置都在正中心
+				ctx.save();
+				//移动的角度跟小时数和分钟数有关,小时数将时针转动的份数12等分
+				var rad = 2 * Math.PI / 12 * h;
+				//但是分钟数也会影响时针的指向,将一个小时的角度数60等分,再将两个角度加起来
+				var mrad = 2 * Math.PI / 12 * m / 60;
+				//确定时针角度(因为这个方法,我们不在需要在moveTo和lineTo方法去确定横坐标的位置)
+				//而只用做长度和拿到他的角度
+				ctx.rotate(rad + mrad);
+				ctx.beginPath();
+				//时针的宽度为6个单位,前后收束线为圆头的
+				ctx.lineWidth = 7 * em;
+				ctx.lineCap = 'round';
+				
+				ctx.moveTo(0,10 * em);
+				
+				ctx.lineTo(0, -r + 80 * em);
+				ctx.stroke();
+				
+			}
+			
+			//绘画分针对象
+			function drawMinute(m){
+				//绘画完之后必须对最原始的状态进行读档以便下一个方法使用
+				ctx.restore();
+				ctx.save();
+				
+				var rad = 2 * Math.PI / 60 * m;
+				//角度
+				ctx.rotate(rad);
+				//路径
+				ctx.beginPath();
+				ctx.lineWidth = 4 * em;
+				ctx.moveTo(0, 10 * em);
+				ctx.lineTo(0, -r + 50 * em);
+				ctx.stroke();
+			}
+			
+			//绘画秒针对象
+			function drawSecond(s){
+				ctx.restore();
+				ctx.save();
+				
+				var rad = 2 * Math.PI / 60 * s;
+				//角度
+				ctx.rotate(rad);
+				//路径
+				ctx.beginPath();
+				ctx.fillStyle = 'red';
+				ctx.lineWidth = 1 * em;
+				ctx.moveTo(0, 10 * em);
+				ctx.lineTo(0, -r + 40 * em);
+				ctx.stroke();
+				ctx.restore();
+			}
+			
+			//绘画时钟
+			function drawClock(){
+				//清除原来面板
+				ctx.clearRect(0,0,width,height);
+				var newTime = new Date();
+				var h = newTime.getHours();
+				var m = newTime.getMinutes();
+				var s = newTime.getSeconds();
+				
+				drawPannel();
+				drawHour(h,m);
+				drawMinute(m);
+				drawSecond(s);
+				
+				ctx.restore();
+			}
+			
+			drawClock();
+			setInterval(drawClock,1000);
+		</script>
+	</body>
+</html>

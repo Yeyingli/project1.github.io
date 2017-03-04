@@ -1,0 +1,13 @@
+/*手机滑动解锁*/
+#lock{background: black; text-align: center; font:50px "microsoft yahei";width: 100%;}
+/*光条特效在h1的170-180px处显示*/
+#lock h1{display: inline-block;color: rgba(255,255,255,0.3);
+	background:-webkit-linear-gradient(0deg,
+		rgba(255,255,255,0) 0,
+		rgba(255,255,255,0) 150px,
+		rgba(255,255,255,1) 170px,
+		rgba(255,255,255,1) 180px,
+		rgba(255,255,255,0) 200px
+		) no-repeat -170px 0;
+	-webkit-background-clip: -webkit-text;
+	}

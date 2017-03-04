@@ -1,0 +1,10 @@
+#parent{margin: 20px; padding: 20px;}
+/*第一组浮动div*/
+#a1{width: 200px;height: 200px;background: lightseagreen;position: absolute;}
+#a2{width: 200px;height: 0;background: lightcyan;position: absolute;overflow: hidden;}
+/*第二组浮动div*/
+#b1{width: 200px;height: 200px;background: gold;position: absolute;left: 350px;}
+#b2{width: 200px;height: 0;background: lightcyan;position: absolute;top:200px;overflow: hidden;}
+/*第三组浮动div*/
+#c1{width: 200px;height: 200px;background: red;position: absolute;left: 650px;}
+#c2{width: 0;height: 0;background: lightcyan;position: absolute;top:200px;overflow: hidden;}

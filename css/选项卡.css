@@ -1,0 +1,10 @@
+/*选项卡外框*/
+#TAB{width:400px; position:relative;margin: 30px auto;}
+/*按钮*/
+#TAB input{ width: 60px;height: 30px;}
+#TAB .active{ background:red;}
+/*文本框*/
+#TAB div{width:400px; height:400px; border:5px blue solid; display:none;}
+/*左右标志*/
+#TAB span:first-of-type{position:absolute; left:10px; top:200px;}
+#TAB span:last-of-type{position:absolute; right:0; top:200px;}

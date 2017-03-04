@@ -1,0 +1,9 @@
+/*背景父框*/
+#box{margin: 0;width: 100%;}
+/*背景框*/
+#box div{width: 100%;height: 700px;}
+/*圆点按钮*/
+#box ul{width:60px;list-style: none;position: fixed;top: 25%;right: 10px;}
+#box ul li{width: 50px;height: 50px;background: lawngreen;border-radius: 50%;margin: 10px;}
+/*圆点颜色*/
+#box .color{background: black;}
