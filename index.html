@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+		<title>项目主页</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script src="js/jquery-1.11.1.js" ></script>
+		<script src="js/bootstrap.js" ></script>
+		<script src="js/Chart.js"></script>
+		<style>
+			#canvas{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+<!--.navbar 导航条-->
+		<nav class="navbar navbar-default">
+		  <div class="container">
+		    <!-- 导航条头部 -->
+		    <div class="navbar-header">
+		    	<!--
+		    		data-target='#id' 指定data-toggle触发的目标元素
+		    	-->
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myCollapse"  aria-expanded="false">
+		        <span class="sr-only">导航触发器</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    	<!--logo 商标-->
+		    	<a class="navbar-brand" href="index.html">Admin
+		    		<!--
+		    			商品可以是图片
+		    		<img src="logo.png" />
+		    		-->
+		    	</a>
+		    </div>
+		    <!-- 折叠组件 将屏幕尺寸不够时需要的隐藏的内容放在.collapse元素内-->
+		    <div class="collapse navbar-collapse" id="myCollapse">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" style="margin-right: 10px;"></span>后台首页 <span class="sr-only">(current)</span></a></li>
+		        <li><a href="users.html"><span class="glyphicon glyphicon-user" style="margin-right: 10px;"></span>用户管理</a></li>
+		        <li><a href="contents.html"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>内容管理</a></li>
+		        <li><a href="tags.html"><span class="glyphicon glyphicon-tags" style="margin-right: 10px;"></span>标签管理</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-folder-open" style="margin-right: 10px;"></span>玩家作品</a></li>
+		      </ul>
+		      <!--. navbar-left 向左浮动-->
+		      <form class="navbar-form navbar-left">
+		        <div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search">
+		        </div>
+		        <button type="submit" class="btn btn-default">查询</button>
+		      </form>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="index.html"><span class="glyphicon glyphicon-screenshot" style="margin-right: 10px;"></span>前台首页</a></li>
+		            <li><a href="index.html"><span class="glyphicon glyphicon-user" style="margin-right: 10px;"></span>个人主页</a></li>
+		            <li><a href="index.html"><span class="glyphicon glyphicon-cog" style="margin-right: 10px;"></span>个人设置</a></li>
+		            <li><a href="index.html"><span class="glyphicon glyphicon-credit-card" style="margin-right: 10px;"></span>账号中心</a></li>
+		            <li><a href="index.html"><span class="glyphicon glyphicon-heart" style="margin-right: 10px;"></span>我的收藏</a></li>
+		          </ul>
+		          <li><a href="index.html"><span class="glyphicon glyphicon-off" style="margin-right: 10px;"></span>退出</a></li>
+		        </li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		 </div><!-- /.container -->
+		</nav>
+<!--警告框-->
+		<div class="row">
+				<div class="col-md-10 col-sm-push-1">					
+						<div class="alert alert-danger"  id="myalert">
+						<!--X号关闭按钮要和警告框背景融合时，必须只能给类close,不要给添加btn类-->
+						<button type="button" class="close" data-dismiss='alert'>&times;</button>
+						<h4>请下载IE10及以上浏览器，以免11平台不支持您的浏览器</h4>
+						<p>您的浏览器版本存在严重安全问题，容易造成攻击，百度淘宝腾讯请你立刻修复！</p>
+						<!--其实关闭按钮，不一定非要用X号，也可以是普通的按钮元素或者链接元素，只需要保证关闭元素带有自定义属性data-dismiss="alert"即可-->
+						<button type="button" class="btn btn-danger" id="closeAlert">立即修复</button>
+						<button type="button" class="btn btn-default" data-dismiss='alert'>下载IE10</button>
+					</div>					
+				</div>
+			</div>
+<!--表格1-->
+		<div class="row">
+			<div class="col-md-5 col-md-push-1">
+				<div class="table-responsive table-bordered">
+					<table class="table  table-hover">
+		<!--表头thead默认不触发hover事件    .active为灰色背景-->
+						<thead>
+							<tr class="active"><th>网站数据统计</th><th></th><th></th></tr>
+							<tr><th>统计项目</th><th>今日</th><th>昨日</th></tr>
+						</thead>
+						<tbody>
+							<tr><th>注册会员</th><th>666</th><th>888</th></tr>
+							<tr><th>登录会员</th><th>6666</th><th>888</th></tr>
+							<tr><th>今日发帖</th><th>1666</th><th>888</th></tr>
+							<tr><th>转载次数</th><th>166</th><th>888</th></tr>
+						</tbody>	
+					</table>
+				</div>
+			</div>
+<!--表格2-->
+			<div class="col-md-5 col-md-push-1">
+				<div class="table-responsive table-bordered">
+					<table class="table">
+						<thead>
+							<tr class="active"><th>网站热帖</th><th></th><th></th></tr>
+						</thead>
+						<tbody>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>天梯竞技场前100玩家名单</a></th><th></th><th>2015/08/08</th></tr>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>宇哥教你冲天梯</a></th><th></th><th>2015/08/08</th></tr>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>菜鸟局上分必备20个英雄</a></th><th></th><th>2015/08/08</th></tr>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>路人10大恶心英雄</a></th><th></th><th>2015/08/08</th></tr>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>宇哥教你虐书神</a></th><th></th><th>2015/08/08</th></tr>
+							<tr><th><a href="#"><span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>70分钟百人头大战</a></th><th></th><th>2015/08/08</th></tr>
+						</tbody>						
+					</table>
+				</div>
+			</div>
+		</div>
+<!--表格3-->
+		<div class="row">
+			<div class="col-md-5 col-md-push-1">
+				<div class="table-responsive table-bordered">
+					<table class="table">
+						<thead>
+							<tr class="active"><th>今日访客统计</th><th></th><th></th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>
+									<div >
+										<!--一定要把数据放到tr/th中，否者会浮动-->
+										<canvas id="canvas"></canvas>
+									</div>	
+								</th>
+							</tr>	
+						</tbody>	
+					</table>
+				</div>
+			</div>
+<!--表格4-->
+			<div class="col-md-5 col-md-push-1">
+				<div class="table-responsive table-bordered">
+					<table class="table">
+						<thead>
+							<tr class="active"><th>服务器状态</th><th></th><th></th></tr>
+						</thead>
+						<tbody>
+							<!--进度条-->
+							<tr><th><span>内存使用率：40%</span><div class="progress"><div class="progress-bar progress-bar-success progress-bar-striped" style="width: 40%;"></div></div></th></tr>
+							<tr><th><span>内存使用率：20%</span><div class="progress"><div class="progress-bar progress-bar-info progress-bar-striped" style="width: 20%;"></div></div></th></tr>
+							<tr><th><span>内存使用率：60%</span><div class="progress"><div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 60%;"></div></div></th></tr>
+							<tr><th><span>内存使用率：80%</span><div class="progress"><div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 80%;"></div></div></th></tr>
+						</tbody>						
+					</table>
+				</div>
+			</div>
+		</div>
+<!--表格5-->
+		<div class="row">
+			<div class="col-md-10 col-md-push-1">
+				<div class="table-responsive table-bordered">
+					<table class="table">
+						<thead>
+							<tr class="active"><th>团队留言板</th><th></th><th></th></tr>
+						</thead>
+						<tbody>
+							<tr><th><span>输入留言内容</span></th></tr>
+							<tr><th>
+								<div class="col-md-3">
+									<textarea  rows="14" cols="70"></textarea>
+									<a href="#" role='button' class="btn btn-default" style="margin-left: 10px;margin-bottom: 25px;">留言</a>
+								</div>
+				<!--最后一个表格-->
+									<div class="col-md-5 col-md-push-4">
+										<div class="table-responsive table-bordered">
+											<div class="table-bordered">
+												<table class="table">
+													<thead>
+														<tr class="active"><th>团队联系手册</th><th></th><th></th></tr>
+														<tr><th>最强三号位</th><th>兰宇：</th><th>15799057509</th></tr>
+													</thead>
+													<tbody>
+														<tr><th>菜逼一号位</th><th>星爷：</th><th>138xxxxxxxx</th></tr>
+														<tr><th>水货二号位</th><th>阿宝：</th><th>137xxxxxxxx</th></tr>
+														<tr><th>酱油四号位</th><th>周老板：</th><th>136xxxxxxxx</th></tr>
+														<tr><th>无限毒瘤刷</th><th>杨二逼：</th><th>130xxxxxxxx</th></tr>
+														<tr><th>最佳第六人</th><th>光头：</th><th>135xxxxxxxx</th></tr>
+													</tbody>	
+												</table>
+											</div>
+										</div>
+									</div>			
+							</th></tr>
+							<tr><th><div class="col-md-12"><pre><img src="images/a.png"/><span class="h3">光头：</span><span class="h4">宇哥,晚上搞几把dota啊！求带</span></pre></div></th></tr>
+							<tr><th><div class="col-md-12"><pre><img src="images/b.png"/><span class="h3">星爷：</span><span class="h4">宇哥,上线上线！4=1,速度黑起</span></pre></div></th></tr>
+							<tr><th><div class="col-md-12"><pre><img src="images/b.png"/><span class="h3">星爷：</span><span class="h4">刚和阿宝开黑被杀出翔了,速度</span></pre></div></th></tr>
+							<tr><th><div class="col-md-12"><pre><img src="images/a.png"/><span class="h3">光头：</span><span class="h4">妹子网吧五连坐，dota开黑没赢过</span></pre></div></th></tr>
+						</tbody>		
+					</table>
+				</div>
+			</div>		
+		</div>
+		<footer  class="text-center" style="padding: 50px;"><cide>Copyright © 2012-2015  www.baidu.com  粤ICP备13014270号-4</cide></footer>
+	<script>
+			//获取canvas
+			var oGC=document.getElementById('canvas').getContext('2d');
+			
+			var chart=new Chart(oGC);
+			var data= {
+				//X坐标数据
+			    labels : ["周一","周二","周三","周四","周五","周六","周末"],
+			    datasets : [
+			        {
+			            //统计表的背景颜色
+			            fillColor : "rgba(0,0,255,0.5)",
+			            //统计表画笔颜色
+			            strokeColor : "#000",
+			            //点的颜色
+			            pointColor : "#ff0",
+			            //点边框的颜色
+			            pointStrokeColor : "red",
+			            //鼠标触发时点的颜色
+			            pointHighlightFill : "#00f",
+			            //鼠标触发时点边框的颜色
+			            pointHighlightStroke : "#000",
+			            //Y坐标数据
+			            data : [300,555,655,1200,714,899,905,1000]
+			        }
+			        ,{
+			            fillColor : "rgba(0,255,0,0.5)",
+			            strokeColor : "rgba(92, 184, 92, 1)",
+			            pointColor : "rgba(23, 126, 23, 1)",
+			            pointStrokeColor : "#fff",
+			            pointHighlightFill : "#fff",
+			            pointHighlightStroke : "rgba(151,187,205,1)",
+			            data : [314,455,755,814,999,905,1000]
+			        }
+			        ,{
+			            fillColor : "rgba(255,0,0,0.5)",
+			            strokeColor : "blue",
+			            pointColor : "rgba(23, 126, 23, 1)",
+			            pointStrokeColor : "#fff",
+			            pointHighlightFill : "#fff",
+			            pointHighlightStroke : "rgba(151,187,205,1)",
+			            data : [114,255,455,414,599,605,500]
+			        }
+    			]
+			};			
+			chart.Line(data,{});			
+		</script>
+		
+	</body>
+</html>
